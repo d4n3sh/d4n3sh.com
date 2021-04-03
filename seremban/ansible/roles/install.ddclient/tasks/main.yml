@@ -1,0 +1,25 @@
+---
+# tasks file for install.ddclient
+- name: ddclient.install
+  apt:
+    pkg:
+      - ddclient
+      - libjson-any-perl
+    state: present
+    cache_valid_time: 600
+
+- name: ddclient.daemon.enable
+  ansible.builtin.lineinfile:
+    path: /etc/default/ddclient
+    regexp: '{{ item.from }}'
+    line: '{{ item.to }}'
+    state: present
+  with_items:
+    - { from: '^run_daemon=', to: 'run_daemon="true"' }
+    - { from: '^daemon_interval=', to: 'daemon_interval="900"' }
+
+- name: ddclient.systemd.enable
+  ansible.builtin.systemd:
+    name: ddclient
+    enabled: yes
+    state: restarted

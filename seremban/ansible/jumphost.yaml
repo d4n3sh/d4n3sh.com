@@ -1,0 +1,9 @@
+---
+- name: Setup seremban jumphost
+  become: true
+  hosts:
+    - seremban-jumphost
+  roles:
+    - install.speedtest
+    - install.ddclient
+    - install.vim
