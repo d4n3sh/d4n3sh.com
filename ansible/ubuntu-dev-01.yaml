@@ -1,0 +1,6 @@
+---
+- name: Update server via apt
+  hosts:
+    - ubuntu-dev-01.d4n3sh.com
+  roles:
+    - install.updates

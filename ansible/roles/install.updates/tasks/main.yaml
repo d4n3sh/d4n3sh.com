@@ -1,0 +1,13 @@
+---
+- name: Apt update and upgrade
+  ansible.builtin.apt:
+    update_cache: yes
+    upgrade: full
+
+- name: Remove old dependencies
+  ansible.builtin.apt:
+    autoremove: yes
+
+- name: Remove old packages
+  ansible.builtin.apt:
+    autoclean: yes
