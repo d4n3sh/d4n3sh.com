@@ -1,0 +1,7 @@
+---
+- name: Update server via apt
+  hosts:
+    - unifi.d4n3sh.com
+  roles:
+    - apt.install.updates
+    - install.docker

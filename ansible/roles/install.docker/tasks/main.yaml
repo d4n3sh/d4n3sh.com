@@ -11,3 +11,5 @@
     groups: docker
     append: True
   with_items: "{{ docker_users }}"
+
+- include_tasks: install_dockercompose.yaml
