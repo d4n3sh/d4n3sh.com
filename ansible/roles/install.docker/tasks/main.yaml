@@ -1,0 +1,13 @@
+---
+- include_tasks: install_on_debian.yaml
+  when: ansible_os_family == 'Debian'
+
+- include_tasks: install_on_redhat.yaml
+  when: ansible_os_family == 'RedHat'
+
+- name: Add docker users
+  ansible.builtin.user:
+    name: "{{ item }}"
+    groups: docker
+    append: True
+  with_items: "{{ docker_users }}"

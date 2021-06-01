@@ -1,0 +1,10 @@
+---
+- name: Yum update and upgrade
+  ansible.builtin.yum:
+    update_cache: yes
+    name: '*'
+    state: latest
+
+- name: Remove old dependencies
+  ansible.builtin.yum:
+    autoremove: yes

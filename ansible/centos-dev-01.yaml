@@ -1,0 +1,7 @@
+---
+- name: Update server via yum
+  hosts:
+    - centos-dev-01.d4n3sh.com
+  roles:
+    - yum.install.updates
+    - install.docker
