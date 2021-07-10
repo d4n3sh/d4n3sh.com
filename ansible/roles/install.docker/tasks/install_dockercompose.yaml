@@ -1,0 +1,14 @@
+---
+- name: Get installed docker-compose version
+  ansible.builtin.command: "/usr/local/bin/docker-compose --version"
+  register: docker_compose_installed_version
+  changed_when: false
+  failed_when: false
+
+- name: Install docker-compose
+  ansible.builtin.get_url:
+    url: https://github.com/docker/compose/releases/download/{{ target_docker_compose_version }}/docker-compose-Linux-x86_64
+    dest: /usr/local/bin/docker-compose
+    mode: 0755
+    force: yes
+  when: target_docker_compose_version not in docker_compose_installed_version.stdout 

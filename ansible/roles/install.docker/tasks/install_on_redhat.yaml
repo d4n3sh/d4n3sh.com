@@ -1,0 +1,4 @@
+---
+- name: Install on RedHat
+  ansible.builtin.debug:
+    msg: "Install on RedHat"

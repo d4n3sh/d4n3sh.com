@@ -1,0 +1,19 @@
+---
+- name: Update server via apt
+  hosts:
+    - unifi.d4n3sh.com
+  become: true
+  roles:
+    - apt.install.updates
+    - install.docker
+  tags:
+    - install
+
+- name: Update system packages
+  hosts:
+    - unifi.d4n3sh.com
+  become: true
+  roles:
+    - apt.install.updates
+  tags:
+    - update

@@ -1,0 +1,49 @@
+---
+- name: Install on Debian
+  ansible.builtin.debug:
+    msg: "Install on Debian"
+
+- name: Remove old docker version
+  ansible.builtin.package:
+    name:
+      - docker
+      - docker-engine
+      - docker.io
+      - containerd
+      - runc
+    state: absent
+
+- name: Install dependencies
+  ansible.builtin.package:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg
+      - lsb-release
+    state: present
+
+- name: Add Docker's GPG key
+  ansible.builtin.apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    id: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
+    state: present
+
+- name: Add Docker's repo file
+  ansible.builtin.apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
+    state: present
+    filename: docker
+    update_cache: True
+
+- name: Install Docker
+  ansible.builtin.package:
+    name:
+      - docker-ce
+    state: present
+
+- name: Enable and start the Docker service
+  ansible.builtin.service:
+    name: docker
+    state: started
+    enabled: True

@@ -1,0 +1,7 @@
+---
+- name: Update server via apt
+  hosts:
+    - ubuntu-dev-01.d4n3sh.com
+  roles:
+    - apt.install.updates
+    - install.docker
