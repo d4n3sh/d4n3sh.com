@@ -1,0 +1,21 @@
+---
+# This playbook will update all htpc related containers managed with docker-compose.
+
+- name: Update HTPC containers on antman
+  hosts: antman
+  gather_facts: no
+  tasks:
+
+    - name: 1. Make sure pip is installed.
+      become: yes
+      ansible.builtin.package:
+        name: 
+          - pip
+          - python3-docker
+        state: present
+
+    - name: 2. Pull latest images and start services if required.
+      community.docker.docker_compose:
+        project_src: /home/danesh/docker/htpc
+        pull: yes
+        state: present
