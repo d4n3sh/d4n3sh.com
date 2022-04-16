@@ -3,5 +3,7 @@ all:
     ubuntu-dev-01.d4n3sh.com:
     centos-dev-01.d4n3sh.com:
     unifi.d4n3sh.com:
-
-
+  children:
+    antman:
+      hosts:
+        192.168.1.199
