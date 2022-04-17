@@ -7,3 +7,6 @@ all:
     antman:
       hosts:
         192.168.1.199
+    pihole:
+      hosts:
+        192.168.1.2
